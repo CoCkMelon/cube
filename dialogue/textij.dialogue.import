@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_12"
+type="Resource"
+uid="uid://jp6j2m7qy80o"
+path="res://.godot/imported/textij.dialogue-49bc0dc25f2b3aee432f09fe99418662.tres"
+
+[deps]
+
+source_file="res://dialogue/textij.dialogue"
+dest_files=["res://.godot/imported/textij.dialogue-49bc0dc25f2b3aee432f09fe99418662.tres"]
+
+[params]
+
+defaults=true

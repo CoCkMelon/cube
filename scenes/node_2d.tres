@@ -1,0 +1,90 @@
+[gd_resource type="VisualShader" load_steps=10 format=3 uid="uid://2em8jywld73g"]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_l1bna"]
+input_name = "time"
+
+[sub_resource type="VisualShaderNodeVectorCompose" id="VisualShaderNodeVectorCompose_wurvb"]
+
+[sub_resource type="VisualShaderNodeFloatFunc" id="VisualShaderNodeFloatFunc_nvipy"]
+function = 0
+
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_3ue7x"]
+
+[sub_resource type="VisualShaderNodeTexture3D" id="VisualShaderNodeTexture3D_2tpk5"]
+output_port_for_preview = 0
+texture = SubResource("NoiseTexture3D_3ue7x")
+
+[sub_resource type="VisualShaderNodeVectorCompose" id="VisualShaderNodeVectorCompose_upj5n"]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_jbiq4"]
+input_name = "fragcoord"
+
+[sub_resource type="VisualShaderNodeClamp" id="VisualShaderNodeClamp_6mhc1"]
+default_input_values = [0, 0.0, 1, 0.29, 2, 0.46]
+
+[sub_resource type="VisualShaderNodeVectorFunc" id="VisualShaderNodeVectorFunc_hitl1"]
+output_port_for_preview = 0
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
+
+
+
+
+void fragment() {
+// VectorCompose:3
+	float n_in3p0 = 0.00000;
+	float n_in3p1 = 0.00000;
+	float n_in3p2 = 0.00000;
+	vec3 n_out3p0 = vec3(n_in3p0, n_in3p1, n_in3p2);
+
+
+// Input:2
+	float n_out2p0 = TIME;
+
+
+// FloatFunc:4
+	float n_out4p0 = sin(n_out2p0);
+
+
+// Clamp:8
+	float n_in8p1 = 0.29000;
+	float n_in8p2 = 0.46000;
+	float n_out8p0 = clamp(n_out4p0, n_in8p1, n_in8p2);
+
+
+// Input:7
+	vec4 n_out7p0 = FRAGCOORD;
+
+
+// VectorFunc:9
+	vec3 n_out9p0 = normalize(vec3(n_out7p0.xyz));
+
+
+// Output:0
+	ALBEDO = n_out3p0;
+	METALLIC = n_out3p0.x;
+	SPECULAR = n_out8p0;
+	EMISSION = n_out9p0;
+
+
+}
+"
+nodes/fragment/2/node = SubResource("VisualShaderNodeInput_l1bna")
+nodes/fragment/2/position = Vector2(-400, 20)
+nodes/fragment/3/node = SubResource("VisualShaderNodeVectorCompose_wurvb")
+nodes/fragment/3/position = Vector2(180, 20)
+nodes/fragment/4/node = SubResource("VisualShaderNodeFloatFunc_nvipy")
+nodes/fragment/4/position = Vector2(-120, 240)
+nodes/fragment/5/node = SubResource("VisualShaderNodeTexture3D_2tpk5")
+nodes/fragment/5/position = Vector2(60, 420)
+nodes/fragment/6/node = SubResource("VisualShaderNodeVectorCompose_upj5n")
+nodes/fragment/6/position = Vector2(-140, 460)
+nodes/fragment/7/node = SubResource("VisualShaderNodeInput_jbiq4")
+nodes/fragment/7/position = Vector2(-640, 780)
+nodes/fragment/8/node = SubResource("VisualShaderNodeClamp_6mhc1")
+nodes/fragment/8/position = Vector2(140, 260)
+nodes/fragment/9/node = SubResource("VisualShaderNodeVectorFunc_hitl1")
+nodes/fragment/9/position = Vector2(-120, 700)
+nodes/fragment/connections = PackedInt32Array(3, 0, 0, 0, 3, 0, 0, 2, 2, 0, 4, 0, 2, 0, 6, 0, 4, 0, 8, 0, 8, 0, 0, 4, 7, 0, 9, 0, 9, 0, 0, 5)

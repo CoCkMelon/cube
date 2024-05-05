@@ -1,0 +1,61 @@
+[gd_scene load_steps=11 format=3 uid="uid://c40f0a3uejgs8"]
+
+[ext_resource type="Script" path="res://scenes/dialogicplay.gd" id="1_s046n"]
+[ext_resource type="PackedScene" uid="uid://dcrwykao3ec27" path="res://models/cube_look_around.tscn" id="2_1d5yv"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="3_8dudu"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_yasjp"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_t5jvx"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/camera_3d_resource.gd" id="5_nd7yl"]
+
+[sub_resource type="Environment" id="Environment_xsgqs"]
+background_energy_multiplier = 0.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_qawm5"]
+
+[sub_resource type="Resource" id="Resource_eoetr"]
+script = ExtResource("4_t5jvx")
+duration = 10.0
+transition = 6
+ease = 2
+
+[sub_resource type="Resource" id="Resource_2gqd7"]
+script = ExtResource("5_nd7yl")
+cull_mask = 1048575
+h_offset = 0.0
+v_offset = 0.0
+fov = 75.0
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_s046n")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_xsgqs")
+
+[node name="Node3D" type="Node3D" parent="WorldEnvironment"]
+
+[node name="cube look around" parent="WorldEnvironment/Node3D" instance=ExtResource("2_1d5yv")]
+
+[node name="Camera3D" type="Camera3D" parent="WorldEnvironment/Node3D"]
+transform = Transform3D(0.999782, -0.000205678, -0.0208933, 3.71235e-06, 0.999953, -0.0096661, 0.0208943, 0.00966392, 0.999735, -0.137901, -0.0637989, 6.36446)
+
+[node name="PhantomCameraHost" type="Node" parent="WorldEnvironment/Node3D/Camera3D"]
+script = ExtResource("3_yasjp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WorldEnvironment/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.09367, 0, 0)
+mesh = SubResource("BoxMesh_qawm5")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(0.435043, 0.667492, -0.604311, 0, 0.671151, 0.74132, 0.90041, -0.322506, 0.291979, 0, 0, 0)
+
+[node name="PhantomCamera3D" type="Node3D" parent="." node_paths=PackedStringArray("look_at_target", "look_at_targets")]
+transform = Transform3D(0.999782, -0.000205678, -0.0208933, 3.71235e-06, 0.999953, -0.0096661, 0.0208943, 0.00966392, 0.999735, -0.137901, -0.0637989, 6.36446)
+script = ExtResource("3_8dudu")
+priority = 10
+look_at_mode = 2
+look_at_target = NodePath("../WorldEnvironment/Node3D/cube look around")
+look_at_targets = [null, null]
+tween_resource = SubResource("Resource_eoetr")
+camera_3d_resource = SubResource("Resource_2gqd7")
+look_at_damping = true
+look_at_damping_value = 0.1
