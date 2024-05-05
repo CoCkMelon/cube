@@ -2,19 +2,12 @@ extends Node2D
 
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
+func _ready():   
+	Dialogic.timeline_ended.connect(_on_timeline_ended)
+
 	Dialogic.start('timeline')
 	get_viewport().set_input_as_handled()
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-func _input(event: InputEvent):
-	# check if a dialog is already running
-	if Dialogic.current_timeline != null:
-		return
-
-	if event is InputEventKey and event.keycode == KEY_ENTER and event.pressed:
-		Dialogic.start('timeline')
-		get_viewport().set_input_as_handled()
+func _on_timeline_ended():
+	Dialogic.timeline_ended.disconnect(_on_timeline_ended)
+	get_tree().change_scene_to_file("res://scenes/night.tscn")

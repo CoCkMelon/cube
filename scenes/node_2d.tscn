@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/dialogicplay.gd" id="1_s046n"]
 [ext_resource type="PackedScene" uid="uid://dcrwykao3ec27" path="res://models/cube_look_around.tscn" id="2_1d5yv"]
+[ext_resource type="Script" path="res://scenes/gamespawner.gd" id="2_rg224"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="3_8dudu"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_yasjp"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_t5jvx"]
@@ -9,8 +10,6 @@
 
 [sub_resource type="Environment" id="Environment_xsgqs"]
 background_energy_multiplier = 0.0
-
-[sub_resource type="BoxMesh" id="BoxMesh_qawm5"]
 
 [sub_resource type="Resource" id="Resource_eoetr"]
 script = ExtResource("4_t5jvx")
@@ -32,18 +31,15 @@ script = ExtResource("1_s046n")
 environment = SubResource("Environment_xsgqs")
 
 [node name="Node3D" type="Node3D" parent="WorldEnvironment"]
+script = ExtResource("2_rg224")
 
 [node name="cube look around" parent="WorldEnvironment/Node3D" instance=ExtResource("2_1d5yv")]
 
 [node name="Camera3D" type="Camera3D" parent="WorldEnvironment/Node3D"]
-transform = Transform3D(0.999782, -0.000205678, -0.0208933, 3.71235e-06, 0.999953, -0.0096661, 0.0208943, 0.00966392, 0.999735, -0.137901, -0.0637989, 6.36446)
+transform = Transform3D(0.999782, -0.000205678, -0.0208933, 3.71236e-06, 0.999953, -0.0096661, 0.0208943, 0.00966392, 0.999735, -0.137901, -0.0637989, 6.36446)
 
 [node name="PhantomCameraHost" type="Node" parent="WorldEnvironment/Node3D/Camera3D"]
 script = ExtResource("3_yasjp")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="WorldEnvironment/Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.09367, 0, 0)
-mesh = SubResource("BoxMesh_qawm5")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
 transform = Transform3D(0.435043, 0.667492, -0.604311, 0, 0.671151, 0.74132, 0.90041, -0.322506, 0.291979, 0, 0, 0)

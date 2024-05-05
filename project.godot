@@ -23,9 +23,23 @@ Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 
 directories/dch_directory={
 "character": "res://dialogic/character.dch",
-"cube2": "res://dialogic/cube2.dch"
+"cube2": "res://dialogic/cube2.dch",
+"kameshek": "res://dialogic/kameshek.dch",
+"mia": "res://dialogic/mia.dch",
+"mountain": "res://dialogic/mountain.dch",
+"mountain dew": "res://dialogic/mountain dew.dch",
+"rock": "res://dialogic/rock.dch",
+"sus0": "res://dialogic/sus0.dch",
+"sus1": "res://dialogic/sus1.dch",
+"sus2": "res://dialogic/sus2.dch",
+"sus3": "res://dialogic/sus3.dch",
+"sus4": "res://dialogic/sus4.dch",
+"sus5": "res://dialogic/sus5.dch",
+"sus6": "res://dialogic/sus6.dch",
+"sus7": "res://dialogic/sus7.dch"
 }
 directories/dtl_directory={
+"night_scene": "res://dialogic/night_scene.dtl",
 "timeline": "res://dialogic/timeline.dtl"
 }
 variables={}
