@@ -11,7 +11,7 @@ func _ready():
 
 func _on_timeline_ended():
 	Dialogic.timeline_ended.disconnect(_on_timeline_ended)
-	get_tree().change_scene_to_file("res://scenes/night.tscn")
+	get_tree().change_scene_to_file("res://scenes/city.tscn")
 
 func _on_dialogic_signal(argument:String):
 		if argument == "activate_something":

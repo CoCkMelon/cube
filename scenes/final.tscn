@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://bhpdkiryc7cyv"]
+
+[ext_resource type="Script" path="res://scenes/dialogic Final.gd" id="1_54kou"]
+
+[node name="Node" type="Node"]
+script = ExtResource("1_54kou")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+custom_minimum_size = Vector2(2.195, 0)
+layout_mode = 2
+anchor_right = 15.15
+anchor_bottom = 11.246
+offset_left = -1189.0
+offset_top = -1089.0
+offset_right = -1767.0
+offset_bottom = -1431.84
+scale = Vector2(145.93, 25.1024)
